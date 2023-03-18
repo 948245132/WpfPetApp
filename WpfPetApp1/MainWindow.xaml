@@ -6,17 +6,27 @@
         xmlns:local="clr-namespace:WpfPetApp1"
         xmlns:wpfanimated="http://wpfanimatedgif.codeplex.com"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800"
-        Style="{StaticResource stlWindow}">
+        Title="MainWindow" Height="{Binding Path=height,Mode=TwoWay}" Width="{Binding Path=height,Mode=TwoWay}"
+        Style="{StaticResource stlWindow}"
+        MouseLeftButtonDown="Window_MouseLeftButtonDown"
+        MouseLeftButtonUp="Window_MouseLeftButtonUp"
+        >
 
     <!--WindowChrome-->
     <WindowChrome.WindowChrome>
         <WindowChrome CaptionHeight="0" ResizeBorderThickness="20"/>
     </WindowChrome.WindowChrome>
 
-    <Grid>
+    <Grid x:Name="Grid">
+        <!-- 点击菜单 -->
+        <Grid.ContextMenu>
+            <ContextMenu>
+                <MenuItem x:Name="itemBackground" Header="显示背景" Click="itemBackground_Click">
+                </MenuItem>
+            </ContextMenu>
+        </Grid.ContextMenu>
         <!--背景（Background）-->
-        <Border Margin="10" Background="White" CornerRadius="25">
+        <Border x:Name="BorderMain" Margin="10" Background="Transparent" CornerRadius="25">
             <Border.Effect>
                 <DropShadowEffect Direction="0" ShadowDepth="0" BlurRadius="20" 
                                   Opacity="0.25" Color="#FF5B5B5B"></DropShadowEffect>
@@ -28,7 +38,6 @@
                wpfanimated:ImageBehavior.AnimateInDesignMode="False"
                wpfanimated:ImageBehavior.AutoStart="True"
                wpfanimated:ImageBehavior.AnimatedSource="Pic/cat.gif"
-               Height="300"
                />
     </Grid>
 </Window>
